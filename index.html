@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustPay — Compra protegida en Trujillo</title>
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS: variables primero, base después, y al final el específico de esta pantalla -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/inicio.css">
+</head>
+<body>
+
+<div id="app">
+
+  <section class="screen activa" id="screen-inicio">
+
+    <div class="hero-inicio">
+      <div class="marca">
+        <svg class="marca-icono" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5V11C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 11V5L12 2Z" fill="white" fill-opacity="0.95"/>
+          <path d="M9 12L11 14L15.5 9.5" stroke="#0B3D91" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="marca-nombre">Trust<span>Pay</span></span>
+      </div>
+
+      <div class="escudo-wrap">
+        <div class="escudo-glow">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4 5V11C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 11V5L12 2Z" fill="white"/>
+            <path d="M9 12L11 14L15.5 9.5" stroke="#0B3D91" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="hero-titulo">Compra con <em>seguridad</em> y sigue tu pedido en tiempo real</h2>
+      <p class="hero-sub">Pagos protegidos · GPS en vivo · Garantía de reembolso para negocios locales de Trujillo</p>
+    </div>
+
+    <div class="cuerpo-inicio">
+      <button class="btn-primario" id="btn-realizar-pedido">Realizar pedido</button>
+      <button class="btn-secundario" id="btn-iniciar-sesion">Iniciar sesión</button>
+
+      <div class="garantias">
+        <div class="garantia-item">
+          <div class="garantia-icono azul">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#1E88E5" stroke-width="1.8"/><path d="M8 11V7a4 4 0 118 0v4" stroke="#1E88E5" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="garantia-label">Pago protegido</span>
+        </div>
+        <div class="garantia-item">
+          <div class="garantia-icono rojo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z" stroke="#D64545" stroke-width="1.8"/><circle cx="12" cy="10" r="2.4" stroke="#D64545" stroke-width="1.8"/></svg>
+          </div>
+          <span class="garantia-label">GPS en vivo</span>
+        </div>
+        <div class="garantia-item">
+          <div class="garantia-icono verde">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2M5 7l1.5 1.2M19 7l-1.5 1.2" stroke="#1B8A5A" stroke-width="1.8" stroke-linecap="round"/><path d="M4 11h6l-2.5 9M14 11h6l-2.5 9" stroke="#1B8A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="2.3" stroke="#1B8A5A" stroke-width="1.8"/></svg>
+          </div>
+          <span class="garantia-label">Garantía<br>reclamo</span>
+        </div>
+      </div>
+
+      <div class="franja-confianza">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 10V7a5 5 0 0110 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <p><strong>Tu dinero queda en custodia</strong> hasta que confirmes que recibiste tu pedido correctamente. Así de simple.</p>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="nav-item activo" data-nav="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-nav="pedidos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 3h2l1 3"/></svg>
+        <span>Pedidos</span>
+      </button>
+      <button class="nav-item" data-nav="tracking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <span>Tracking</span>
+      </button>
+      <button class="nav-item" data-nav="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </section>
+
+</div>
+
+<!-- JS: storage y router son compartidos por todas las pantallas; inicio.js es exclusivo de esta -->
+<script src="js/storage.js"></script>
+<script src="js/router.js"></script>
+<script src="js/inicio.js"></script>
+</body>
+</html>

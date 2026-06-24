@@ -1,0 +1,138 @@
+/* ============================================================
+   INICIO.CSS
+   Estilos exclusivos de la Pantalla 1: Inicio.
+   Solo se carga en index.html.
+   ============================================================ */
+
+.hero-inicio{
+  position:relative;
+  background:linear-gradient(160deg, var(--azul-confianza) 0%, var(--azul-confianza-dark) 100%);
+  padding:36px 24px 56px;
+  color:#fff;
+  overflow:hidden;
+}
+.hero-inicio::before{
+  content:'';
+  position:absolute;
+  width:260px; height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(30,136,229,0.35), transparent 70%);
+  top:-120px; right:-80px;
+}
+.hero-inicio::after{
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(27,138,90,0.25), transparent 70%);
+  bottom:-90px; left:-60px;
+}
+
+.marca{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+  z-index:1;
+}
+.marca-icono{ width:26px; height:26px; flex-shrink:0; }
+.marca-nombre{
+  font-family:var(--fuente-display);
+  font-weight:800;
+  font-size:20px;
+  letter-spacing:-0.2px;
+}
+.marca-nombre span{ color:#7FC4FF; }
+
+.escudo-wrap{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:center;
+  margin:28px 0 24px;
+}
+.escudo-glow{
+  width:128px; height:128px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,0.18);
+}
+.escudo-glow svg{ width:62px; height:62px; }
+
+.hero-titulo{
+  position:relative; z-index:1;
+  font-family:var(--fuente-display);
+  font-weight:700;
+  font-size:24px;
+  line-height:1.28;
+  text-align:center;
+  letter-spacing:-0.3px;
+}
+.hero-titulo em{ font-style:normal; color:#7FC4FF; }
+
+.hero-sub{
+  position:relative; z-index:1;
+  text-align:center;
+  font-size:14px;
+  line-height:1.5;
+  color:rgba(255,255,255,0.78);
+  margin-top:10px;
+  padding:0 12px;
+}
+
+.cuerpo-inicio{
+  padding:24px 20px 0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:-28px;
+}
+
+.garantias{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+.garantia-item{
+  background:var(--superficie);
+  border:1px solid var(--linea);
+  border-radius:14px;
+  padding:14px 8px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  text-align:center;
+  box-shadow:var(--sombra-card);
+}
+.garantia-icono{
+  width:34px; height:34px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+}
+.garantia-icono.azul{ background:#E8F1FC; }
+.garantia-icono.rojo{ background:var(--rojo-alerta-bg); }
+.garantia-icono.verde{ background:var(--verde-custodia-bg); }
+.garantia-icono svg{ width:18px; height:18px; }
+.garantia-label{
+  font-size:11.5px;
+  font-weight:600;
+  color:var(--texto-secundario);
+  line-height:1.25;
+}
+
+.franja-confianza{
+  margin:26px 20px 0;
+  background:var(--verde-custodia-bg);
+  border:1px solid #cfe8db;
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.franja-confianza svg{ width:20px; height:20px; flex-shrink:0; margin-top:1px; color:var(--verde-custodia); }
+.franja-confianza p{ font-size:12.5px; line-height:1.5; color:#1f5c3f; }
+.franja-confianza strong{ color:var(--verde-custodia); }

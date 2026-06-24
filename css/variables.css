@@ -1,0 +1,39 @@
+/* ============================================================
+   VARIABLES.CSS
+   Design tokens de TrustPay: colores, radios, sombras.
+   Este archivo NO contiene estilos de elementos, solo variables.
+   Se importa en TODAS las pantallas, siempre primero.
+   ============================================================ */
+
+:root{
+  /* --- Colores de marca --- */
+  --azul-confianza:#0B3D91;
+  --azul-confianza-dark:#082c69;
+  --celeste-accion:#1E88E5;
+  --verde-custodia:#1B8A5A;
+  --verde-custodia-bg:#E7F5EE;
+  --ambar-alerta:#F5A623;
+  --ambar-alerta-bg:#FFF6E6;
+  --rojo-alerta:#D64545;
+  --rojo-alerta-bg:#FCEAEA;
+
+  /* --- Neutros --- */
+  --fondo:#F7F8FA;
+  --superficie:#FFFFFF;
+  --linea:#E4E8EF;
+  --texto-principal:#15202B;
+  --texto-secundario:#5B6B7C;
+  --texto-terciario:#8E9AAB;
+
+  /* --- Radios --- */
+  --radio-card:18px;
+  --radio-btn:14px;
+
+  /* --- Sombras --- */
+  --sombra-card:0 1px 2px rgba(11,61,145,0.04), 0 8px 24px -8px rgba(11,61,145,0.12);
+  --sombra-elevada:0 4px 12px -2px rgba(11,61,145,0.18), 0 16px 40px -12px rgba(11,61,145,0.16);
+
+  /* --- Tipografía --- */
+  --fuente-display:'Sora', sans-serif;
+  --fuente-texto:'Inter', sans-serif;
+}
