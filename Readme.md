@@ -10,6 +10,46 @@ Prototipo navegable de **TrustPay**, una plataforma de intermediación de confia
 
 ---
 
+## 🚀 Control de Versiones: Guía de Subida y Actualización a GitHub
+
+### 1. Historial de Configuración Inicial (Ya realizado)
+Para vincular de forma segura la carpeta local con el repositorio remoto, se ejecutó la siguiente secuencia en la terminal:
+1. Configuración de credenciales de usuario:
+   ```bash
+   git config --global user.email "tu_correo@ejemplo.com"
+   git config --global user.name "Wilmer2003"
+   ```
+2. Inicialización, confirmación y enlace remoto:
+   ```bash
+   git init
+   git add .
+   git commit -m "Construimos la pantalla de inicio"
+   ```
+3. Creación de la rama estándar y subida con autenticación (*Git Credential Manager*):
+   ```bash
+   git branch -M main
+   git remote add origin https://github.com
+   git push -u origin main
+   ```
+
+### 2. ⚡ Comandos Rápidos para Guardar Nuevos Avances (Uso Diario)
+Cada vez que avances con nuevas pantallas (como la Pantalla 2), solo necesitas ejecutar estos **3 comandos** en tu terminal para actualizar GitHub:
+
+1. **Seleccionar cambios:** Agrega todos los archivos nuevos o modificados al área de preparación.
+   ```bash
+   git add .
+   ```
+2. **Registrar avance:** Crea un punto de control con un mensaje descriptivo de lo que hiciste.
+   ```bash
+   git commit -m "Terminamos la pantalla de seleccion de negocio"
+   ```
+3. **Subir a la nube:** Envía los cambios directamente a tu repositorio público de manera inmediata.
+   ```bash
+   git push origin main
+   ```
+
+---
+
 ## Stack
 
 HTML + CSS + JavaScript puro (sin frameworks, sin build step). Cada pantalla es un archivo `.html` independiente que comparte CSS y JS comunes.
@@ -17,6 +57,7 @@ HTML + CSS + JavaScript puro (sin frameworks, sin build step). Cada pantalla es 
 ---
 
 ## Estructura del proyecto
+
 
 ```
 trustpay/
