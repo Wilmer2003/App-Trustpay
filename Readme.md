@@ -17,7 +17,7 @@ Para vincular de forma segura la carpeta local con el repositorio remoto, se eje
 1. Configuración de credenciales de usuario:
    ```bash
    git config --global user.email "tu_correo@ejemplo.com"
-   git config --global user.name "Wilmer2003"
+   git config --global user.name "Upao2026"
    ```
 2. Inicialización, confirmación y enlace remoto:
    ```bash
@@ -28,7 +28,7 @@ Para vincular de forma segura la carpeta local con el repositorio remoto, se eje
 3. Creación de la rama estándar y subida con autenticación (*Git Credential Manager*):
    ```bash
    git branch -M main
-   git remote add origin https://github.com
+   git remote add origin https://github.com/Wilmer2003/App-Trustpay
    git push -u origin main
    ```
 
