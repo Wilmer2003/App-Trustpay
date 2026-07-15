@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustPay — Seguimiento de Pedido</title>
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS: variables y base compartida primero, luego el de esta pantalla -->
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/tracking.css">
+</head>
+<body>
+
+<div id="app">
+
+  <section class="screen" id="screen-tracking">
+
+    <!-- Topbar Azul -->
+    <header class="topbar topbar-azul">
+      <button class="btn-back" id="btn-back-tracking" aria-label="Volver">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <h1>Seguimiento de pedido</h1>
+    </header>
+
+    <div class="cuerpo-tracking">
+      <!-- Mapa SVG de Trujillo con motorizado animado -->
+      <div class="mapa-container">
+        <!-- SVG Map representing a styled grid with road lines -->
+        <svg class="mapa-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background grids and roads -->
+          <rect width="400" height="180" fill="#E8ECEF" rx="8" />
+          <path d="M 0 50 L 400 50" stroke="#FFFFFF" stroke-width="4" />
+          <path d="M 0 130 L 400 130" stroke="#FFFFFF" stroke-width="4" />
+          <path d="M 80 0 L 80 180" stroke="#FFFFFF" stroke-width="4" />
+          <path d="M 200 0 L 200 180" stroke="#FFFFFF" stroke-width="4" />
+          <path d="M 320 0 L 320 180" stroke="#FFFFFF" stroke-width="4" />
+          
+          <!-- Diagonal route -->
+          <path d="M 60 140 L 150 110 L 200 80 L 340 40" stroke="rgba(30, 136, 229, 0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          <path id="route-path" d="M 60 140 L 150 110 L 200 80 L 340 40" stroke="#1E88E5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="8,5" />
+          
+          <!-- Store Marker -->
+          <circle cx="60" cy="140" r="8" fill="#FF7A00" />
+          <text x="53" y="160" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#FF7A00">Tienda</text>
+          
+          <!-- Delivery Target Marker -->
+          <circle cx="340" cy="40" r="8" fill="#1B8A5A" />
+          <text x="315" y="25" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#1B8A5A">Destino</text>
+
+          <!-- Motorized Rider Pin (animado) -->
+          <g id="rider-marker" transform="translate(60, 140)">
+            <circle cx="0" cy="0" r="10" fill="#1E88E5" opacity="0.3" class="pulsing-ring" />
+            <circle cx="0" cy="0" r="6" fill="#1E88E5" />
+            <!-- Tiny arrow inside -->
+            <polygon points="-2,1 2,1 0,-3" fill="#FFFFFF" transform="rotate(65)" />
+          </g>
+        </svg>
+        <span class="mapa-tag">GPS Activo</span>
+      </div>
+
+      <!-- Card: Tiempo de entrega -->
+      <div class="estado-tiempo-card">
+        <div class="tiempo-icono-wrap">
+          <svg class="tiempo-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+        </div>
+        <div class="tiempo-info">
+          <h2 id="txt-tiempo-titulo">MOTORIZADO EN CAMINO</h2>
+          <p id="txt-tiempo-sub">Tiempo est. 12 minutos</p>
+        </div>
+      </div>
+
+      <!-- Sección: Estado del Pedido (Stepper) -->
+      <div class="seccion-wrap">
+        <h3 class="seccion-titulo">Estado del pedido</h3>
+        <div class="stepper-horizontal">
+          <div class="step-col" data-step="1">
+            <div class="step-num">1</div>
+            <span class="step-label">Recibido</span>
+          </div>
+          <div class="step-line" id="line-1"></div>
+          
+          <div class="step-col" data-step="2">
+            <div class="step-num">2</div>
+            <span class="step-label">Preparación</span>
+          </div>
+          <div class="step-line" id="line-2"></div>
+          
+          <div class="step-col" data-step="3">
+            <div class="step-num">3</div>
+            <span class="step-label">En camino</span>
+          </div>
+          <div class="step-line" id="line-3"></div>
+          
+          <div class="step-col" data-step="4">
+            <div class="step-num">4</div>
+            <span class="step-label">Entregado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Datos del Repartidor -->
+      <div class="repartidor-card">
+        <div class="repartidor-avatar-wrap">
+          <!-- Generamos un avatar usando iniciales o SVG -->
+          <div class="repartidor-avatar">CM</div>
+        </div>
+        <div class="repartidor-info">
+          <h3>Carlos Mendoza</h3>
+          <p>★ 4.8 · 342 entregas realizadas</p>
+        </div>
+        <a href="tel:+51987654321" class="btn-llamar" aria-label="Llamar al repartidor">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.27c1.12.44 2.33.69 3.57.69a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.25 2.45.69 3.57a1 1 0 0 1-.27 1.11l-2.2 2.2z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Franja Custodia Verde -->
+      <div class="custodia-bar">
+        <svg class="custodia-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <p id="txt-custodia-status">S/. 35.50 soles en custodia segura - Se liberará al confirmar su entrega.</p>
+      </div>
+
+      <!-- SIMULADOR DE DELIVERY (Para pruebas del prototipo) -->
+      <div class="simulador-card">
+        <h4>Panel de simulación del prototipo</h4>
+        <div class="simulador-botones">
+          <button class="btn-sim-step" data-target-step="1">1. Recibido</button>
+          <button class="btn-sim-step" data-target-step="2">2. Prep</button>
+          <button class="btn-sim-step" data-target-step="3">3. Camino</button>
+          <button class="btn-sim-step" data-target-step="4">4. Entregado</button>
+        </div>
+        <p class="sim-help-text">El estado avanza automáticamente cada 8s, o puedes controlarlo con estos botones para tu validación.</p>
+      </div>
+
+      <!-- Botón flotante para confirmar entrega (Habilitado en paso 4) -->
+      <div class="btn-confirmar-wrap" id="confirmar-entrega-btn-container" style="display: none;">
+        <button class="btn-primario btn-confirmar-entrega-directa" id="btn-ir-confirmar-entrega">
+          Confirmar Recepción del Pedido
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <button class="nav-item" data-nav="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-nav="pedidos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 3h2l1 3"/></svg>
+        <span>Pedidos</span>
+      </button>
+      <button class="nav-item" data-nav="tracking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <span>Tracking</span>
+      </button>
+      <button class="nav-item" data-nav="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </section>
+
+</div>
+
+<!-- JS -->
+<script src="../js/storage.js"></script>
+<script src="../js/router.js"></script>
+<script src="../js/tracking.js"></script>
+</body>
+</html>

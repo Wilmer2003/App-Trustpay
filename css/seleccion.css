@@ -1,0 +1,311 @@
+/* ============================================================
+   SELECCION.CSS
+   Estilos exclusivos de la Pantalla 2: Selección de negocio.
+   Solo se carga en pages/seleccion.html.
+   ============================================================ */
+
+/* --- Topbar azul override --- */
+.topbar-azul {
+  background: var(--azul-confianza) !important;
+  color: #ffffff !important;
+  border-bottom: none !important;
+}
+.topbar-azul h1 {
+  color: #ffffff !important;
+}
+.topbar-azul .btn-back {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+.topbar-azul .btn-back:active {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.cuerpo-seleccion {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Buscador --- */
+.search-box {
+  position: relative;
+  width: 100%;
+}
+.search-box input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-btn);
+  font-size: 14.5px;
+  color: var(--texto-principal);
+  font-family: var(--fuente-texto);
+  box-shadow: var(--sombra-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.search-box input:focus {
+  border-color: var(--celeste-accion);
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.12);
+}
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--texto-terciario);
+  pointer-events: none;
+}
+
+/* --- Secciones --- */
+.seccion-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.seccion-titulo {
+  font-family: var(--fuente-texto);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--texto-terciario);
+  text-transform: uppercase;
+}
+
+/* --- Lista de Categorías --- */
+.categorias-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.categoria-item {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-btn);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--sombra-card);
+  transition: transform 0.15s, background-color 0.15s;
+  text-align: left;
+}
+.categoria-item:active {
+  transform: scale(0.99);
+  background: var(--fondo);
+}
+.categoria-item.seleccionado {
+  border-color: var(--celeste-accion);
+  background: rgba(30, 136, 229, 0.03);
+}
+.cat-icono {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cat-icono svg {
+  width: 20px;
+  height: 20px;
+}
+.cat-icono.naranja {
+  background: #FFF0E5;
+  color: #FF7A00;
+}
+.cat-icono.cian {
+  background: #E4F9F6;
+  color: #00B4A0;
+}
+.cat-icono.rojo {
+  background: var(--rojo-alerta-bg);
+  color: var(--rojo-alerta);
+}
+.cat-nombre {
+  flex: 1;
+  font-family: var(--fuente-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--texto-principal);
+}
+.cat-flecha {
+  width: 16px;
+  height: 16px;
+  color: var(--texto-terciario);
+}
+
+/* --- Lista de Negocios --- */
+.negocios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.negocio-card {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-card);
+  padding: 14px;
+  display: flex;
+  gap: 14px;
+  box-shadow: var(--sombra-card);
+  align-items: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.negocio-card:hover {
+  transform: translateY(-2px);
+}
+.negocio-img-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--fondo);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--linea);
+}
+.negocio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.negocio-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--azul-confianza) 0%, var(--celeste-accion) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: var(--fuente-display);
+  font-size: 24px;
+  font-weight: 700;
+}
+.negocio-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0; /* previene desbordes */
+}
+.negocio-nombre {
+  font-family: var(--fuente-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--texto-principal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.negocio-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--texto-terciario);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.negocio-dir {
+  font-size: 12px;
+  color: var(--texto-secundario);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.negocio-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  gap: 8px;
+}
+.negocio-estado {
+  display: flex;
+  align-items: center;
+  gap: 4.5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--verde-custodia);
+}
+.negocio-estado::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--verde-custodia);
+  display: inline-block;
+}
+.btn-ver-productos {
+  background: var(--celeste-accion);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px -2px rgba(30,136,229,0.3);
+  transition: background-color 0.15s, transform 0.1s;
+}
+.btn-ver-productos:active {
+  transform: scale(0.96);
+  background: var(--azul-confianza);
+}
+
+/* --- Si no hay resultados --- */
+.no-resultados {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--texto-secundario);
+  font-family: var(--fuente-texto);
+  font-size: 14px;
+}
+.no-resultados svg {
+  width: 48px;
+  height: 48px;
+  color: var(--texto-terciario);
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (TABLET & DESKTOP)
+   ============================================================ */
+@media (min-width: 768px) {
+  .cuerpo-seleccion {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-areas: 
+      "search negocios"
+      "cats negocios";
+    gap: 20px 30px;
+    align-items: start;
+  }
+
+  .search-box {
+    grid-area: search;
+  }
+
+  .seccion-wrap:nth-of-type(1) {
+    grid-area: cats;
+  }
+
+  .seccion-wrap:nth-of-type(2) {
+    grid-area: negocios;
+  }
+
+  .negocios-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  
+  .negocio-card {
+    height: 100%;
+  }
+}
+

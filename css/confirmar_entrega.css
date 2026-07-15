@@ -1,0 +1,281 @@
+/* ============================================================
+   CONFIRMAR_ENTREGA.CSS
+   Estilos exclusivos de la Pantalla 5: Confirmación de entrega.
+   Solo se carga en pages/confirmar_entrega.html.
+   ============================================================ */
+
+/* --- Banner verde de éxito --- */
+.exito-header {
+  background: linear-gradient(165deg, var(--verde-custodia) 0%, #126340 100%);
+  color: #ffffff;
+  padding: 36px 20px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.exito-icono-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.exito-icono {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+.exito-header h2 {
+  font-family: var(--fuente-display);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.exito-header p {
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 300px;
+}
+
+.cuerpo-entrega {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Cards --- */
+.entrega-card {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-card);
+  padding: 16px 18px;
+  box-shadow: var(--sombra-card);
+}
+.card-titulo {
+  font-family: var(--fuente-texto);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--texto-terciario);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* --- Lista de datos de liberación --- */
+.datos-lista {
+  display: flex;
+  flex-direction: column;
+}
+.dato-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  margin-bottom: 12px;
+}
+.dato-fila:last-child {
+  margin-bottom: 0;
+}
+.dato-label {
+  color: var(--texto-secundario);
+}
+.dato-valor {
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+.dato-valor.font-mono {
+  font-family: monospace;
+  font-size: 14px;
+}
+.dato-valor.estado-entregado {
+  color: var(--verde-custodia);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.punto-verde {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--verde-custodia);
+  display: inline-block;
+}
+.divider {
+  height: 1px;
+  background: var(--linea);
+  margin: 12px 0;
+}
+.dato-fila.destacado {
+  margin-top: 4px;
+  font-size: 13.5px;
+}
+.dato-label.verde {
+  color: var(--verde-custodia);
+  font-weight: 700;
+}
+.monto-liberar {
+  font-family: var(--fuente-display);
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--verde-custodia);
+}
+
+/* --- Calificación Estrellas --- */
+.rating-estrellas {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+.star-btn {
+  font-size: 34px;
+  color: #E4E8EF;
+  transition: color 0.15s, transform 0.1s;
+  line-height: 1;
+}
+.star-btn:active {
+  transform: scale(0.85);
+}
+.star-btn.active {
+  color: var(--ambar-alerta);
+}
+
+/* --- Comentario text area --- */
+.comentario-wrap textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--linea);
+  font-family: var(--fuente-texto);
+  font-size: 13px;
+  outline: none;
+  resize: none;
+  color: var(--texto-principal);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.comentario-wrap textarea::placeholder {
+  color: var(--texto-terciario);
+}
+.comentario-wrap textarea:focus {
+  border-color: var(--celeste-accion);
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+/* --- Botones --- */
+.entrega-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.btn-liberar {
+  width: 100%;
+  background: #F1F3F5;
+  border: 1px solid #DDE1E5;
+  color: #212529;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 15px;
+  border-radius: var(--radio-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.15s, transform 0.1s;
+}
+.btn-liberar:active {
+  transform: scale(0.98);
+  background: #E2E6EA;
+}
+.btn-liberar svg {
+  width: 16px;
+  height: 16px;
+  color: var(--verde-custodia);
+  stroke-width: 3;
+}
+
+.btn-reportar {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #CED4DA;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 15px;
+  border-radius: var(--radio-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.15s, transform 0.1s;
+}
+.btn-reportar:active {
+  transform: scale(0.98);
+  background: var(--fondo);
+}
+.btn-reportar svg {
+  width: 15px;
+  height: 15px;
+  color: #555555;
+  margin-top: -1px;
+}
+.btn-reportar:hover {
+  border-color: var(--rojo-alerta);
+  color: var(--rojo-alerta);
+}
+.btn-reportar:hover svg {
+  color: var(--rojo-alerta);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (TABLET & DESKTOP)
+   ============================================================ */
+@media (min-width: 768px) {
+  .cuerpo-entrega {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-areas: 
+      "payment rating"
+      "actions actions";
+    gap: 20px 30px;
+    align-items: stretch;
+  }
+
+  .entrega-card:nth-of-type(1) {
+    grid-area: payment;
+    height: 100%;
+  }
+
+  .entrega-card:nth-of-type(2) {
+    grid-area: rating;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .rating-estrellas {
+    margin: 16px 0 24px;
+  }
+
+  .entrega-acciones {
+    grid-area: actions;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 20px 30px;
+    margin-top: 10px;
+  }
+  
+  .btn-liberar, .btn-reportar {
+    margin: 0;
+  }
+}
+

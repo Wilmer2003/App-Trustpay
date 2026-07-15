@@ -92,6 +92,27 @@
       </button>
     </nav>
 
+    <!-- Modal Iniciar Sesión Overlay -->
+    <div id="login-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close" id="btn-close-login" aria-label="Cerrar">&times;</button>
+        <h3>Iniciar Sesión</h3>
+        <p class="modal-sub">Usa una cuenta simulada para explorar el prototipo.</p>
+        
+        <form id="form-login" onsubmit="return false;">
+          <div class="form-field">
+            <label for="login-email">Correo electrónico</label>
+            <input type="email" id="login-email" placeholder="usuario@correo.com" required value="demo@trustpay.pe">
+          </div>
+          <div class="form-field">
+            <label for="login-password">Contraseña</label>
+            <input type="password" id="login-password" placeholder="••••••••" required value="123456">
+          </div>
+          <button type="submit" class="btn-primario" id="btn-submit-login">Ingresar</button>
+        </form>
+      </div>
+    </div>
+
   </section>
 
 </div>

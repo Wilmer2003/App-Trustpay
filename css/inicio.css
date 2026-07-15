@@ -136,3 +136,167 @@
 .franja-confianza svg{ width:20px; height:20px; flex-shrink:0; margin-top:1px; color:var(--verde-custodia); }
 .franja-confianza p{ font-size:12.5px; line-height:1.5; color:#1f5c3f; }
 .franja-confianza strong{ color:var(--verde-custodia); }
+
+/* --- Modal Iniciar Sesión Overlay --- */
+.modal-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(11, 61, 145, 0.4); /* color azul-confianza traslúcido */
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-content {
+  background: var(--superficie);
+  width: 90%;
+  max-width: 350px;
+  border-radius: var(--radio-card);
+  padding: 24px;
+  box-shadow: var(--sombra-elevada);
+  border: 1px solid var(--linea);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.25s ease;
+}
+.modal-overlay.show .modal-content {
+  transform: translateY(0);
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-size: 24px;
+  color: var(--texto-terciario);
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-close:hover {
+  color: var(--texto-principal);
+}
+.modal-content h3 {
+  font-family: var(--fuente-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin-bottom: 6px;
+}
+.modal-sub {
+  font-size: 12px;
+  color: var(--texto-secundario);
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.form-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--texto-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.form-field input {
+  padding: 12px 14px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-btn);
+  font-size: 13.5px;
+  color: var(--texto-principal);
+  background: var(--fondo);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-field input:focus {
+  border-color: var(--celeste-accion);
+}
+#form-login button[type="submit"] {
+  margin-top: 8px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (TABLET & DESKTOP)
+   ============================================================ */
+@media (min-width: 768px) {
+  #screen-inicio {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-content: stretch;
+    height: 100vh;
+    padding-bottom: 84px;
+    overflow-y: hidden;
+  }
+
+  .hero-inicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 40px;
+    border-radius: 0;
+  }
+  .hero-inicio::before {
+    width: 320px; height: 320px;
+    top: -80px; right: -50px;
+  }
+  .hero-inicio::after {
+    width: 250px; height: 250px;
+    bottom: -60px; left: -40px;
+  }
+
+  .escudo-wrap {
+    margin: 40px 0;
+  }
+  .escudo-glow {
+    width: 140px; height: 140px;
+  }
+  .escudo-glow svg {
+    width: 70px; height: 70px;
+  }
+  .hero-titulo {
+    font-size: 28px;
+    line-height: 1.35;
+    text-align: left;
+  }
+  .hero-sub {
+    text-align: left;
+    font-size: 15px;
+    padding: 0;
+    margin-top: 14px;
+  }
+
+  .cuerpo-inicio {
+    justify-content: center;
+    padding: 40px 30px;
+    margin-top: 0;
+    overflow-y: auto;
+  }
+  .cuerpo-inicio::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  .garantias {
+    margin-top: 24px;
+    gap: 12px;
+  }
+  .garantia-item {
+    padding: 16px 10px;
+  }
+  .garantia-label {
+    font-size: 12.5px;
+  }
+  .franja-confianza {
+    margin: 32px 0 0;
+  }
+}
+

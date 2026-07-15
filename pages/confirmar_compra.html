@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustPay — Confirmar Compra</title>
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS: variables y base compartida primero, luego el de esta pantalla -->
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/confirmar_compra.css">
+</head>
+<body>
+
+<div id="app">
+
+  <section class="screen" id="screen-confirmar-compra">
+
+    <!-- Topbar Azul -->
+    <header class="topbar topbar-azul">
+      <button class="btn-back" id="btn-back-compra" aria-label="Volver">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <h1>Confirmar compra</h1>
+    </header>
+
+    <div class="cuerpo-compra">
+      <!-- Card: Resumen del pedido -->
+      <div class="compra-card">
+        <h2 class="card-titulo">Resumen del pedido</h2>
+        
+        <div id="pedido-items-list" class="pedido-items">
+          <!-- Items dinámicos se cargan aquí -->
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="precio-fila comision">
+          <span>Comisión TrustPay</span>
+          <span id="txt-comision">S/. 0.50</span>
+        </div>
+        <div class="precio-fila total">
+          <span>Precio total</span>
+          <span id="txt-total" class="bold">S/. 35.50</span>
+        </div>
+      </div>
+
+      <!-- Sección: Método de pago -->
+      <div class="seccion-wrap">
+        <h2 class="seccion-titulo">Método de pago protegido</h2>
+        <div class="metodos-pago">
+          <button class="btn-pago" data-metodo="yape" id="btn-yape">
+            <div class="pago-logo yape">Y</div>
+            <span class="pago-nombre">Yape</span>
+          </button>
+          <button class="btn-pago" data-metodo="plin" id="btn-plin">
+            <div class="pago-logo plin">P</div>
+            <span class="pago-nombre">Plin</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Alerta de Escrow/Protección -->
+      <div class="alerta-proteccion">
+        <div class="alerta-icono">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="alerta-texto">
+          <strong>Tu dinero estará protegido</strong>
+          <p>El pago queda en custodia hasta que confirmes que recibiste tu pedido correctamente.</p>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="compra-acciones">
+        <button class="btn-primario" id="btn-confirmar-compra">Confirmar compra</button>
+        <button class="btn-secundario" id="btn-cancelar-compra">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <button class="nav-item" data-nav="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-nav="pedidos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 3h2l1 3"/></svg>
+        <span>Pedidos</span>
+      </button>
+      <button class="nav-item" data-nav="tracking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <span>Tracking</span>
+      </button>
+      <button class="nav-item" data-nav="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </section>
+
+</div>
+
+<!-- JS -->
+<script src="../js/storage.js"></script>
+<script src="../js/router.js"></script>
+<script src="../js/confirmar_compra.js"></script>
+</body>
+</html>

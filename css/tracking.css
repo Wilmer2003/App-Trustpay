@@ -1,0 +1,422 @@
+/* ============================================================
+   TRACKING.CSS
+   Estilos exclusivos de la Pantalla 3: Seguimiento de pedido.
+   Solo se carga en pages/tracking.html.
+   ============================================================ */
+
+/* --- Topbar azul override --- */
+.topbar-azul {
+  background: var(--azul-confianza) !important;
+  color: #ffffff !important;
+  border-bottom: none !important;
+}
+.topbar-azul h1 {
+  color: #ffffff !important;
+}
+.topbar-azul .btn-back {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+.topbar-azul .btn-back:active {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.cuerpo-tracking {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* --- Mapa container --- */
+.mapa-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  box-shadow: var(--sombra-card);
+}
+.mapa-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.mapa-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--celeste-accion);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 8px rgba(30, 136, 229, 0.25);
+}
+
+/* --- Pulse animation for rider --- */
+.pulsing-ring {
+  animation: pulseRider 1.8s infinite ease-in-out;
+  transform-origin: 0px 0px;
+}
+@keyframes pulseRider {
+  0% { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(2.0); opacity: 0; }
+}
+
+/* --- Card: Tiempo de entrega --- */
+.estado-tiempo-card {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-card);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--sombra-card);
+}
+.tiempo-icono-wrap {
+  background: #E8F1FC;
+  color: var(--celeste-accion);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tiempo-icono {
+  width: 22px;
+  height: 22px;
+}
+.tiempo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tiempo-info h2 {
+  font-family: var(--fuente-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+.tiempo-info p {
+  font-size: 13px;
+  color: var(--texto-secundario);
+}
+
+/* --- Stepper horizontal --- */
+.seccion-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.seccion-titulo {
+  font-family: var(--fuente-texto);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--texto-terciario);
+  text-transform: uppercase;
+}
+.stepper-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-card);
+  box-shadow: var(--sombra-card);
+}
+.step-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--fondo);
+  color: var(--texto-terciario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1.5px solid var(--linea);
+  transition: all 0.3s ease;
+}
+.step-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--texto-terciario);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.step-line {
+  height: 3px;
+  background: var(--linea);
+  flex-grow: 1;
+  margin-top: -16px; /* alinea con el centro del circulo */
+  max-width: 45px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Stepper: Estados completados */
+.step-col.completado .step-num {
+  background: var(--verde-custodia);
+  color: #ffffff;
+  border-color: var(--verde-custodia);
+}
+.step-col.completado .step-label {
+  color: var(--verde-custodia);
+}
+.step-line.completado {
+  background: var(--verde-custodia);
+}
+
+/* Stepper: Estado activo */
+.step-col.activo .step-num {
+  background: var(--celeste-accion);
+  color: #ffffff;
+  border-color: var(--celeste-accion);
+  box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.18);
+}
+.step-col.activo .step-label {
+  color: var(--celeste-accion);
+  font-weight: 700;
+}
+.step-line.activo {
+  background: var(--celeste-accion);
+}
+
+/* --- Repartidor card --- */
+.repartidor-card {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-card);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--sombra-card);
+}
+.repartidor-avatar-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--fondo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--linea);
+  flex-shrink: 0;
+}
+.repartidor-avatar {
+  font-family: var(--fuente-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+.repartidor-info {
+  flex: 1;
+}
+.repartidor-info h3 {
+  font-family: var(--fuente-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+.repartidor-info p {
+  font-size: 11px;
+  color: var(--texto-secundario);
+  margin-top: 2px;
+}
+.btn-llamar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--rojo-alerta);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(214, 69, 69, 0.35);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.btn-llamar:active {
+  transform: scale(0.95);
+}
+.btn-llamar svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* --- Custodia Bar --- */
+.custodia-bar {
+  background: var(--verde-custodia-bg);
+  border: 1px solid #cfe8db;
+  border-radius: var(--radio-btn);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+.custodia-icono {
+  color: var(--verde-custodia);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.custodia-bar p {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #1f5c3f;
+}
+
+/* --- Simulador card --- */
+.simulador-card {
+  background: var(--superficie);
+  border: 1.5px dashed var(--ambar-alerta);
+  border-radius: var(--radio-card);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--sombra-card);
+}
+.simulador-card h4 {
+  font-family: var(--fuente-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: #c9820c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.simulador-botones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.btn-sim-step {
+  font-family: var(--fuente-texto);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 8px 0;
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto-secundario);
+  transition: all 0.15s ease;
+}
+.btn-sim-step.activo {
+  background: var(--celeste-accion);
+  color: #ffffff;
+  border-color: var(--celeste-accion);
+}
+.sim-help-text {
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: var(--texto-terciario);
+}
+
+/* --- Botón Confirmación Recepción --- */
+.btn-confirmar-wrap {
+  position: sticky;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  background: linear-gradient(0deg, var(--fondo) 70%, transparent 100%);
+  padding: 12px 0 6px;
+  animation: slideUp 0.3s ease-out;
+}
+@keyframes slideUp {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.btn-confirmar-entrega-directa {
+  background: var(--verde-custodia) !important;
+  box-shadow: 0 8px 20px -6px rgba(27, 138, 90, 0.55) !important;
+}
+.btn-confirmar-entrega-directa:active {
+  background: #146944 !important;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (TABLET & DESKTOP)
+   ============================================================ */
+@media (min-width: 768px) {
+  .cuerpo-tracking {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    grid-template-areas: 
+      "map status"
+      "map stepper"
+      "map driver"
+      "map escrow"
+      "map simulator"
+      "map confirmbtn";
+    gap: 20px 30px;
+    align-items: start;
+  }
+
+  .mapa-container {
+    grid-area: map;
+    height: 100%;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mapa-svg {
+    flex: 1;
+    height: 100%;
+    min-height: 400px;
+    object-fit: cover;
+  }
+
+  .estado-tiempo-card {
+    grid-area: status;
+  }
+
+  .seccion-wrap {
+    grid-area: stepper;
+  }
+
+  .repartidor-card {
+    grid-area: driver;
+  }
+
+  .custodia-bar {
+    grid-area: escrow;
+  }
+
+  .simulador-card {
+    grid-area: simulator;
+  }
+
+  .btn-confirmar-wrap {
+    grid-area: confirmbtn;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    z-index: 1;
+    background: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+}
+

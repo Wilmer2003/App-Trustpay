@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustPay — Confirmar Entrega</title>
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS: variables y base compartida primero, luego el de esta pantalla -->
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/confirmar_entrega.css">
+</head>
+<body>
+
+<div id="app">
+
+  <section class="screen" id="screen-confirmar-entrega">
+
+    <!-- Éxito Header Verde -->
+    <div class="exito-header">
+      <div class="exito-icono-wrap">
+        <svg class="exito-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2>¡Pedido entregado!</h2>
+      <p>Revisa que todo vaya conforme a lo que pediste antes de confirmar tu pedido.</p>
+    </div>
+
+    <div class="cuerpo-entrega">
+      <!-- Card: Liberación de pago -->
+      <div class="entrega-card">
+        <h3 class="card-titulo">LIBERACIÓN DEL PAGO AL NEGOCIO</h3>
+        
+        <div class="datos-lista">
+          <div class="dato-fila">
+            <span class="dato-label">Negocio</span>
+            <span class="dato-valor" id="txt-negocio-nombre">Pizzería La Trattoria</span>
+          </div>
+          <div class="dato-fila">
+            <span class="dato-label">Pedido</span>
+            <span class="dato-valor font-mono" id="txt-pedido-id">#TP-2847</span>
+          </div>
+          <div class="dato-fila">
+            <span class="dato-label">Estado</span>
+            <span class="dato-valor estado-entregado"><span class="punto-verde"></span>Entregado</span>
+          </div>
+          
+          <div class="divider"></div>
+
+          <div class="dato-fila destacado">
+            <span class="dato-label verde">A liberar automáticamente</span>
+            <span class="dato-valor monto-liberar" id="txt-monto-liberar">S/. 35.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Calificación del servicio -->
+      <div class="entrega-card">
+        <h3 class="card-titulo">CALIFICACIÓN DEL SERVICIO</h3>
+        
+        <div class="rating-estrellas" id="rating-container">
+          <button class="star-btn" data-value="1" aria-label="1 Estrella">★</button>
+          <button class="star-btn" data-value="2" aria-label="2 Estrellas">★</button>
+          <button class="star-btn" data-value="3" aria-label="3 Estrellas">★</button>
+          <button class="star-btn" data-value="4" aria-label="4 Estrellas">★</button>
+          <button class="star-btn" data-value="5" aria-label="5 Estrellas">★</button>
+        </div>
+
+        <div class="comentario-wrap">
+          <textarea placeholder="Deja un comentario sobre tu experiencia..." id="input-comentario" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- Acciones de Entrega -->
+      <div class="entrega-acciones">
+        <button class="btn-liberar" id="btn-confirmar-liberar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Confirmar entrega y liberar pago
+        </button>
+        <button class="btn-reportar" id="btn-reportar-problema">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 22h20L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/>
+          </svg>
+          Reportar un problema
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <button class="nav-item" data-nav="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-nav="pedidos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 3h2l1 3"/></svg>
+        <span>Pedidos</span>
+      </button>
+      <button class="nav-item" data-nav="tracking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <span>Tracking</span>
+      </button>
+      <button class="nav-item" data-nav="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </section>
+
+</div>
+
+<!-- JS -->
+<script src="../js/storage.js"></script>
+<script src="../js/router.js"></script>
+<script src="../js/confirmar_entrega.js"></script>
+</body>
+</html>
