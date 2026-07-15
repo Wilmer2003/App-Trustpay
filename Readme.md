@@ -65,20 +65,26 @@ trustpay/
 ├── pages/
 │   ├── seleccion.html       → Pantalla 2: Selección de negocio
 │   ├── tracking.html        → Pantalla 3: Seguimiento de pedido
-│   ├── confirmar-compra.html→ Pantalla 4: Confirmación de compra
-│   └── confirmar-entrega.html→ Pantalla 5: Confirmación de entrega
+│   ├── confirmar_compra.html→ Pantalla 4: Confirmación de compra
+│   └── confirmar_entrega.html→ Pantalla 5: Confirmación de entrega
 ├── css/
 │   ├── variables.css        → Design tokens: colores, tipografía, radios, sombras
-│   ├── base.css              → Reset + topbar + bottom-nav (compartido por todas las pantallas)
-│   ├── inicio.css            → Estilos exclusivos de index.html
-│   └── seleccion.css         → Estilos exclusivos de pages/seleccion.html
+│   ├── base.css             → Reset + topbar + bottom-nav
+│   ├── inicio.css           → Estilos de index.html
+│   ├── seleccion.css        → Estilos de seleccion.html
+│   ├── tracking.css         → Estilos de tracking.html
+│   ├── confirmar_compra.css → Estilos de confirmar_compra.html
+│   └── confirmar_entrega.css→ Estilos de confirmar_entrega.html
 ├── js/
-│   ├── storage.js             → Capa de persistencia (envuelve localStorage)
-│   ├── router.js               → Controla el ítem activo del bottom-nav
-│   ├── inicio.js                → Lógica exclusiva de index.html
-│   └── seleccion.js             → Lógica exclusiva de pages/seleccion.html
+│   ├── storage.js           → Capa de persistencia (localStorage)
+│   ├── router.js            → Controla el ítem activo del bottom-nav
+│   ├── inicio.js            → Lógica de index.html
+│   ├── seleccion.js         → Lógica de seleccion.html
+│   ├── tracking.js          → Lógica de tracking.html
+│   ├── confirmar_compra.js  → Lógica de confirmar_compra.html
+│   └── confirmar_entrega.js → Lógica de confirmar_entrega.html
 ├── assets/
-│   └── icons/                    → (reservado para íconos sueltos si se necesitan más adelante)
+│   └── icons/               → (reservado para íconos sueltos)
 └── README.md
 ```
 
@@ -112,8 +118,12 @@ mkdir -p trustpay/css trustpay/js trustpay/pages trustpay/assets/icons
 6. `css/inicio.css` — estilos exclusivos de esta pantalla (hero con degradado, tarjetas de garantías).
 7. `js/inicio.js` — el botón "Realizar pedido" navega a `pages/seleccion.html`.
 
-### Paso 5 — Pantalla 2: Selección de negocio
-*(en construcción — ver sección siguiente)*
+### Paso 5 — Desarrollo de pantallas de flujo (Completado)
+Se construyeron todas las pantallas del flujo principal bajo la misma arquitectura (HTML + CSS + JS propios por vista):
+- **Pantalla 2 (Selección):** Elección de tienda/repartidor y detalles del pedido.
+- **Pantalla 3 (Seguimiento):** Tracking en tiempo real y chat con el repartidor.
+- **Pantalla 4 (Confirmación de compra):** Pago en custodia (Escrow) seguro.
+- **Pantalla 5 (Confirmación de entrega):** Ingreso de código PIN de seguridad, liberación de fondos y calificación.
 
 ---
 
@@ -142,10 +152,10 @@ mkdir -p trustpay/css trustpay/js trustpay/pages trustpay/assets/icons
 | # | Pantalla | Archivo | Estado |
 |---|----------|---------|--------|
 | 1 | Inicio | `index.html` | ✅ Listo |
-| 2 | Selección de negocio | `pages/seleccion.html` | 🔧 En construcción |
-| 3 | Seguimiento de pedido | `pages/tracking.html` | ⬜ Pendiente |
-| 4 | Confirmación de compra | `pages/confirmar-compra.html` | ⬜ Pendiente |
-| 5 | Confirmación de entrega | `pages/confirmar-entrega.html` | ⬜ Pendiente |
+| 2 | Selección de negocio | `pages/seleccion.html` | ✅ Listo |
+| 3 | Seguimiento de pedido | `pages/tracking.html` | ✅ Listo |
+| 4 | Confirmación de compra | `pages/confirmar_compra.html` | ✅ Listo |
+| 5 | Confirmación de entrega | `pages/confirmar_entrega.html` | ✅ Listo |
 
 ---
 
