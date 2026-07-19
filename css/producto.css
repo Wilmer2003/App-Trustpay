@@ -1,0 +1,202 @@
+/* ============================================================
+   PRODUCTO.CSS
+   ============================================================ */
+
+.cuerpo-producto {
+  padding: 24px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.producto-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+  overflow: hidden;
+}
+
+.producto-img-container {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--fondo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 160px;
+  border-bottom: 1px solid var(--linea);
+  overflow: hidden;
+}
+
+.producto-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.producto-info-container {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.producto-estado-vendidos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--texto-secundario);
+}
+.tag-estado {
+  font-weight: 600;
+  color: var(--texto-terciario);
+  background: var(--fondo);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+#prod-nombre {
+  font-family: var(--fuente-display);
+  font-size: 22px;
+  color: var(--texto-principal);
+  line-height: 1.3;
+}
+
+.prod-precio-box {
+  margin-top: -4px;
+}
+.precio-principal {
+  font-family: var(--fuente-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--azul-confianza);
+}
+
+.prod-descripcion {
+  font-size: 14.5px;
+  color: var(--texto-secundario);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.prod-atributos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--fondo);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.attr-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+}
+.attr-label {
+  color: var(--texto-terciario);
+}
+.attr-value {
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+.attr-value.verde {
+  color: var(--verde-custodia);
+}
+
+.vendedor-box {
+  margin-top: 8px;
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  padding: 16px;
+}
+.vendedor-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.vendedor-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--celeste-accion);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.vendedor-textos {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.vendedor-title {
+  font-size: 11px;
+  color: var(--texto-terciario);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.vendedor-nombre {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+.vendedor-meta {
+  font-size: 12px;
+  color: var(--texto-secundario);
+  margin-top: 2px;
+  display: flex;
+  gap: 8px;
+}
+.vendedor-meta .verde {
+  color: var(--verde-custodia);
+  font-weight: 600;
+}
+
+.producto-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.btn-lg {
+  padding: 16px;
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  .cuerpo-producto {
+    padding: 32px;
+  }
+  .producto-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .producto-img-container {
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid var(--linea);
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 500px;
+  }
+  .producto-info-container {
+    flex: 1;
+    padding: 32px;
+  }
+  .producto-acciones {
+    flex-direction: row;
+  }
+  .producto-acciones button {
+    flex: 1;
+  }
+}

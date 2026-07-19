@@ -138,6 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Cambiar de estado manualmente
   function setEstado(nuevoEstado) {
     order.estado = nuevoEstado;
+    if (textosEstado[nuevoEstado]) {
+      order.estadoFase = textosEstado[nuevoEstado].titulo;
+      // Mostrar notificación interactiva estilo real
+      TrustPayToast.show(textosEstado[nuevoEstado].sub, 'info', 4000);
+    }
     actualizarPantalla();
   }
 

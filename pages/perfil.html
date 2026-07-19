@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustPay — Mi Perfil</title>
+
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="../css/variables.css?v=14">
+<link rel="stylesheet" href="../css/base.css?v=14">
+<link rel="stylesheet" href="../css/toast.css?v=14">
+<style>
+  .cuerpo-perfil {
+    padding: 1.5rem;
+    padding-bottom: 6rem;
+  }
+  .perfil-card {
+    background: linear-gradient(135deg, var(--azul-confianza) 0%, var(--celeste-accion) 100%);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 20px rgba(11, 61, 145, 0.2);
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+  }
+  .perfil-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    color: var(--azul-confianza);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: var(--fuente-display);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .perfil-nombre {
+    font-family: var(--fuente-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .perfil-email {
+    font-family: var(--fuente-texto);
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  .perfil-seccion {
+    margin-bottom: 1.5rem;
+  }
+  .seccion-titulo {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--texto-terciario);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    padding-left: 4px;
+  }
+  .seccion-links {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--linea);
+    overflow: hidden;
+  }
+  .btn-opcion {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid var(--linea);
+    padding: 16px;
+    color: var(--texto-principal);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+  .btn-opcion:last-child {
+    border-bottom: none;
+  }
+  .btn-opcion:active {
+    background-color: var(--fondo);
+  }
+  .btn-opcion .icon {
+    font-size: 22px;
+    margin-right: 16px;
+    width: 24px;
+    text-align: center;
+  }
+  .opcion-textos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .opcion-titulo {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .opcion-sub {
+    font-size: 12px;
+    color: var(--texto-secundario);
+  }
+  .btn-opcion .arrow {
+    font-size: 20px;
+    color: var(--texto-terciario);
+    font-weight: 300;
+  }
+  
+  .perfil-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    margin-top: 20px;
+    padding: 12px 0;
+    width: 100%;
+  }
+  .stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: white;
+  }
+  .stat-valor {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .stat-label {
+    font-size: 11px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <section class="screen" id="screen-perfil">
+
+    <!-- Topbar Azul -->
+    <header class="topbar topbar-azul" style="background: var(--azul-confianza); color: white;">
+      <button class="btn-back" id="btn-back-perfil" aria-label="Volver">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <h1>Mi Perfil</h1>
+    </header>
+
+    <div class="cuerpo-perfil">
+      <div class="perfil-card">
+        <div class="perfil-avatar" id="avatar-inicial">U</div>
+        <h2 class="perfil-nombre" id="txt-perfil-nombre">Usuario Invitado</h2>
+        <p class="perfil-email" id="txt-perfil-email">No has iniciado sesión</p>
+        
+        <!-- Stats de usuario (solo visible si inicia sesión, pero lo dejaremos siempre visible para el MVP) -->
+        <div class="perfil-stats">
+          <div class="stat-item">
+            <span class="stat-valor">350</span>
+            <span class="stat-label">Puntos Trust</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-valor">2</span>
+            <span class="stat-label">Cupones</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfil-seccion">
+        <h3 class="seccion-titulo">Mi Cuenta</h3>
+        <div class="seccion-links">
+          <button class="btn-opcion" onclick="window.location.href='pedidos.html'">
+            <span class="icon">📦</span>
+            <div class="opcion-textos">
+              <span class="opcion-titulo">Mis Pedidos</span>
+              <span class="opcion-sub">Historial y seguimiento</span>
+            </div>
+            <span class="arrow">›</span>
+          </button>
+          <button class="btn-opcion btn-proximamente">
+            <span class="icon">💳</span>
+            <div class="opcion-textos">
+              <span class="opcion-titulo">Métodos de Pago</span>
+              <span class="opcion-sub">Tarjetas, Yape y Plin</span>
+            </div>
+            <span class="arrow">›</span>
+          </button>
+          <button class="btn-opcion btn-proximamente">
+            <span class="icon">📍</span>
+            <div class="opcion-textos">
+              <span class="opcion-titulo">Mis Direcciones</span>
+              <span class="opcion-sub">Gestiona tus lugares de entrega</span>
+            </div>
+            <span class="arrow">›</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="perfil-seccion">
+        <h3 class="seccion-titulo">Ayuda y Soporte</h3>
+        <div class="seccion-links">
+          <button class="btn-opcion btn-proximamente">
+            <span class="icon">🎧</span>
+            <div class="opcion-textos">
+              <span class="opcion-titulo">Centro de Ayuda</span>
+              <span class="opcion-sub">Preguntas frecuentes y soporte</span>
+            </div>
+            <span class="arrow">›</span>
+          </button>
+          <button class="btn-opcion btn-proximamente">
+            <span class="icon">⚙️</span>
+            <div class="opcion-textos">
+              <span class="opcion-titulo">Configuración</span>
+              <span class="opcion-sub">Notificaciones y preferencias</span>
+            </div>
+            <span class="arrow">›</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="perfil-seccion">
+        <div class="seccion-links">
+          <button class="btn-opcion danger" id="btn-cerrar-sesion">
+            <span class="icon">🚪</span>
+            <div class="opcion-textos">
+              <span class="opcion-titulo" style="color: var(--rojo-peligro)">Cerrar Sesión</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <button class="nav-item" data-nav="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-nav="pedidos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 3h2l1 3"/></svg>
+        <span>Pedidos</span>
+      </button>
+      <button class="nav-item" data-nav="tracking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <span>Tracking</span>
+      </button>
+      <button class="nav-item activo" data-nav="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </section>
+
+</div>
+
+<!-- JS -->
+<script src="../js/storage.js?v=10"></script>
+<script src="../js/modals.js?v=1"></script>
+<script src="../js/toast.js?v=10"></script>
+<script src="../js/router.js?v=10"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = typeof TrustPayStorage !== 'undefined' ? TrustPayStorage.get('user') : null;
+    if (user && user.email) {
+      document.getElementById('txt-perfil-email').textContent = user.email;
+      const nombre = user.email.split('@')[0];
+      document.getElementById('txt-perfil-nombre').textContent = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+      document.getElementById('avatar-inicial').textContent = nombre.charAt(0).toUpperCase();
+    }
+
+    document.getElementById('btn-cerrar-sesion').addEventListener('click', () => {
+      if (typeof TrustPayStorage !== 'undefined') {
+        TrustPayStorage.remove('user');
+      }
+      TrustPayToast.show('Sesión cerrada correctamente', 'success');
+      setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 1500);
+    });
+
+    document.getElementById('btn-back-perfil').addEventListener('click', () => {
+      window.location.href = '../index.html';
+    });
+
+    // Lógica para Modales
+    const modalSeguridad = document.getElementById('modal-seguridad');
+    const modalNosotros = document.getElementById('modal-nosotros');
+
+    document.getElementById('btn-seguridad').addEventListener('click', () => {
+      modalSeguridad.classList.add('show');
+    });
+
+    document.getElementById('btn-close-seguridad').addEventListener('click', () => {
+      modalSeguridad.classList.remove('show');
+    });
+
+    document.getElementById('btn-nosotros').addEventListener('click', () => {
+      modalNosotros.classList.add('show');
+    });
+
+    document.getElementById('btn-close-nosotros').addEventListener('click', () => {
+      modalNosotros.classList.remove('show');
+    });
+
+    // Funcionalidad para botones 'Próximamente'
+    document.querySelectorAll('.btn-proximamente').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        TrustPayToast.show('Esta función estará disponible muy pronto.', 'info');
+      });
+    });
+
+    // Cerrar haciendo clic fuera
+    window.addEventListener('click', (e) => {
+      if (e.target === modalSeguridad) modalSeguridad.classList.remove('show');
+      if (e.target === modalNosotros) modalNosotros.classList.remove('show');
+    });
+  });
+</script>
+</body>
+</html>

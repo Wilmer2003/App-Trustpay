@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CSS: variables primero, base después, y al final el específico de esta pantalla -->
-<link rel="stylesheet" href="css/variables.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/inicio.css">
+<link rel="stylesheet" href="css/variables.css?v=13">
+<link rel="stylesheet" href="css/base.css?v=13">
+<link rel="stylesheet" href="css/toast.css?v=13">
+<link rel="stylesheet" href="css/inicio.css?v=13">
 </head>
 <body>
 
 <div id="app">
-
   <section class="screen activa" id="screen-inicio">
-
+    <div class="inicio-split">
     <div class="hero-inicio">
       <div class="marca">
         <svg class="marca-icono" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="cuerpo-inicio">
-      <button class="btn-primario" id="btn-realizar-pedido">Realizar pedido</button>
+      <button class="btn-primario btn-lg" id="btn-realizar-pedido" style="margin-bottom: 8px;">Realizar pedido</button>
       <button class="btn-secundario" id="btn-iniciar-sesion">Iniciar sesión</button>
 
       <div class="garantias">
@@ -72,6 +72,54 @@
         <p><strong>Tu dinero queda en custodia</strong> hasta que confirmes que recibiste tu pedido correctamente.</p>
       </div>
     </div>
+    </div> <!-- Cierre de inicio-split -->
+
+    <!-- Footer Corporativo -->
+    <footer class="app-footer">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <div class="footer-logo">Trust<span>Pay</span></div>
+          <div class="social-icons">
+            <a href="#">f</a>
+            <a href="#">in</a>
+            <a href="#">ig</a>
+            <a href="#">yt</a>
+          </div>
+          <p class="footer-address">
+            Dirección Legal: Av. España 1234<br>
+            Centro Histórico - Trujillo<br><br>
+            Razón Social: TrustPay Tech S.A.C.<br>
+            RUC: 20123456789
+          </p>
+          <div class="libro-reclamaciones" onclick="TrustPayModals.show('modal-libro')">
+            <span class="icon">📘</span>
+            <span>LIBRO DE<br>RECLAMACIONES</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Servicio al Cliente</h3>
+          <ul>
+            <li><a href="#" onclick="TrustPayModals.show('modal-politicas-envio'); return false;"><span class="icon">📦</span> Políticas de envío</a></li>
+            <li><a href="#" onclick="TrustPayModals.show('modal-terminos'); return false;"><span class="icon">📄</span> Términos y condiciones</a></li>
+            <li><a href="#" onclick="TrustPayModals.show('modal-preguntas'); return false;"><span class="icon">❓</span> Preguntas frecuentes</a></li>
+            <li><a href="#" onclick="TrustPayModals.show('modal-contacto'); return false;"><span class="icon">💬</span> Contáctanos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Nosotros</h3>
+          <ul>
+            <li><a href="#" onclick="TrustPayModals.show('modal-sobre-nosotros'); return false;"><span class="icon">🚀</span> Sobre nosotros</a></li>
+            <li><a href="#" onclick="TrustPayModals.show('modal-datos'); return false;"><span class="icon">🛡️</span> Política y protección de datos</a></li>
+            <li><a href="#" onclick="TrustPayModals.show('modal-bases'); return false;"><span class="icon">⚖️</span> Bases legales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 TrustPay - Todos los derechos reservados
+      </div>
+    </footer>
 
     <nav class="bottom-nav">
       <button class="nav-item activo" data-nav="inicio">
@@ -112,14 +160,16 @@
         </form>
       </div>
     </div>
-
   </section>
 
 </div>
 
 <!-- JS: storage y router son compartidos por todas las pantallas; inicio.js es exclusivo de esta -->
-<script src="js/storage.js"></script>
-<script src="js/router.js"></script>
-<script src="js/inicio.js"></script>
+<script src="js/data.js?v=18"></script>
+<script src="js/storage.js?v=13"></script>
+<script src="js/toast.js?v=13"></script>
+<script src="js/modals.js?v=13"></script>
+<script src="js/router.js?v=13"></script>
+<script src="js/inicio.js?v=13"></script>
 </body>
 </html>

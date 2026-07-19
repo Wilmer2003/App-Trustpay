@@ -4,14 +4,16 @@
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Obtener negocio seleccionado desde storage.js
   let negocio = null;
+  let cart = [];
+  
   if (typeof TrustPayStorage !== 'undefined') {
     negocio = TrustPayStorage.get('selected_business');
+    cart = TrustPayStorage.get('cart_checkout', []);
   }
 
-  // Si no hay negocio seleccionado, redirigir a selección para evitar errores
-  if (!negocio) {
+  // Si no hay negocio o carrito, redirigir
+  if (!negocio || cart.length === 0) {
     window.location.href = 'seleccion.html';
     return;
   }
@@ -24,43 +26,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnConfirmar = document.getElementById('btn-confirmar-compra');
   const btnCancelar = document.getElementById('btn-cancelar-compra');
   const btnBack = document.getElementById('btn-back-compra');
+  const loadingOverlay = document.getElementById('loading-overlay');
+  const loadingText = document.getElementById('loading-text');
 
   let metodoSeleccionado = null;
 
-  // Mapeo simple de emojis para productos del mockup
-  const emojiMap = {
-    'Pizza Familiar': '🍕',
-    'Gaseosa 1.5L': '🥤',
-    'Canasta Básica Abarrotes': '📦',
-    'Detergente Premium 2kg': '🧼',
-    'Botiquín de Emergencia': '🩹',
-    'Mascarillas KN95 x10': '😷',
-    'Hamburguesa Especial': '🍔',
-    'Papas Nativas Chicas': '🍟'
-  };
-
-  // 2. Renderizar resumen de productos
+  // 2. Renderizar resumen de los productos del carrito
   itemsListContainer.innerHTML = '';
   let subtotal = 0;
 
-  negocio.items.forEach(item => {
-    subtotal += item.precio;
-    const emoji = emojiMap[item.nombre] || '🏷️';
-    
+  cart.forEach(item => {
+    const rowSubtotal = item.precio * item.cantidad;
+    subtotal += rowSubtotal;
+
     const row = document.createElement('div');
     row.className = 'pedido-item-fila';
     row.innerHTML = `
       <div class="pedido-item-info">
-        <div class="pedido-item-icono">${emoji}</div>
-        <span class="pedido-item-nombre">${item.nombre}</span>
+        <div class="pedido-item-icono">${item.emoji || '📦'}</div>
+        <span class="pedido-item-nombre">${item.cantidad}x ${item.nombre}</span>
       </div>
-      <span class="pedido-item-precio">S/. ${item.precio.toFixed(2)}</span>
+      <span class="pedido-item-precio">S/. ${rowSubtotal.toFixed(2)}</span>
     `;
     itemsListContainer.appendChild(row);
   });
 
   // Calcular Comisión y Total
-  const comision = 0.50; // Comisión fija del mockup
+  const comision = 1.00;
   const total = subtotal + comision;
 
   txtComision.textContent = `S/. ${comision.toFixed(2)}`;
@@ -79,34 +71,55 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Confirmar Compra y crear Pedido Activo
   btnConfirmar.addEventListener('click', () => {
     if (!metodoSeleccionado) {
-      alert('Por favor, selecciona un método de pago protegido (Yape o Plin) antes de continuar.');
+      TrustPayToast.show('Por favor, selecciona un método de pago protegido (Yape o Plin) antes de continuar.', 'error');
       return;
     }
 
-    // Crear pedido en estado "Recibido" (1)
+    const numId = Math.floor(Math.random() * 9000) + 1000;
+    
+    // Mapear productos para el historial
+    const orderProducts = cart.map(item => ({
+      nombre: item.nombre,
+      emoji: item.emoji || '📦',
+      precio: item.precio,
+      cantidad: item.cantidad
+    }));
+
+    // Crear pedido
     const nuevoPedido = {
-      id: 'TP-2847', // ID de pedido del mockup
+      id: `TP-${numId}`,
       negocioId: negocio.id,
       negocioNombre: negocio.nombre,
-      montoNegocio: subtotal, // Lo que va al negocio (S/. 35.00 en caso de La Trattoria)
-      comision: comision,     // Comisión TrustPay (S/. 0.50)
-      total: total,           // Total pagado (S/. 35.50)
-      metodoPago: metodoSeleccionado.charAt(0).toUpperCase() + metodoSeleccionado.slice(1), // Capitalizado
-      estado: 1,              // 1 = Recibido, 2 = Preparación, 3 = En camino, 4 = Entregado
+      negocioImg: negocio.img,
+      productos: orderProducts,
+      montoNegocio: subtotal,
+      comision: comision,
+      total: total,
+      metodoPago: metodoSeleccionado.charAt(0).toUpperCase() + metodoSeleccionado.slice(1),
+      estado: 1, 
+      estadoFase: 'Pago en custodia',
       repartidorNombre: 'Carlos Mendoza',
-      repartidorTelefono: '+51 987 654 321', // Ficticio
+      repartidorTelefono: '+51 987 654 321',
       calificacion: 0,
       comentario: '',
       timestamp: Date.now()
     };
 
-    // Guardar en almacenamiento persistente
     if (typeof TrustPayStorage !== 'undefined') {
       TrustPayStorage.set('active_order', nuevoPedido);
+      TrustPayStorage.remove('trustpay_cart'); // Vaciar carrito real al comprar
     }
 
-    // Redirigir a la pantalla de tracking
-    window.location.href = 'tracking.html';
+    const metodoCapitalizado = metodoSeleccionado.charAt(0).toUpperCase() + metodoSeleccionado.slice(1);
+    loadingText.textContent = `Conectando con ${metodoCapitalizado}...`;
+    loadingOverlay.classList.add('show');
+
+    setTimeout(() => {
+      loadingText.textContent = '¡Pago procesado y protegido!';
+      setTimeout(() => {
+        window.location.href = 'tracking.html';
+      }, 700);
+    }, 2500);
   });
 
   // 5. Botones cancelar / volver

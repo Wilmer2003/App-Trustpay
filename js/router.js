@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Determinar qué pestaña debe estar activa según el archivo actual
   let activeNav = 'inicio';
   
-  if (path.includes('seleccion.html') || path.includes('confirmar_compra.html')) {
+  if (path.includes('pedidos.html') || path.includes('seleccion.html') || path.includes('confirmar_compra.html')) {
     activeNav = 'pedidos';
   } else if (path.includes('tracking.html') || path.includes('confirmar_entrega.html')) {
     activeNav = 'tracking';
@@ -38,14 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
           targetUrl = isInPagesDir ? '../index.html' : 'index.html';
           break;
         case 'pedidos':
-          targetUrl = isInPagesDir ? 'seleccion.html' : 'pages/seleccion.html';
+          targetUrl = isInPagesDir ? 'pedidos.html' : 'pages/pedidos.html';
           break;
         case 'tracking':
           targetUrl = isInPagesDir ? 'tracking.html' : 'pages/tracking.html';
           break;
         case 'perfil':
-          // En caso de que se implemente más adelante o para pruebas
-          alert('Módulo de perfil en desarrollo.');
+          window.location.href = isInPagesDir ? 'perfil.html' : 'pages/perfil.html';
           return;
       }
 

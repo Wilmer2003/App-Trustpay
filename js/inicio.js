@@ -1,7 +1,7 @@
 /* ============================================================
    INICIO.JS
-   Lógica exclusiva de la Pantalla 1: Inicio.
-   Controla el flujo de navegación principal y el inicio de sesión simulado.
+   Lógica de la Pantalla 1: Inicio.
+   Controla el botón "Realizar pedido" y el modal de inicio de sesión.
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,55 +27,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. Evento del botón de Iniciar Sesión (o Cerrar Sesión)
-  btnIniciarSesion.addEventListener('click', () => {
-    if (btnIniciarSesion.classList.contains('logged-in')) {
-      // Cerrar sesión
-      if (typeof TrustPayStorage !== 'undefined') {
-        TrustPayStorage.remove('user');
+  if (btnIniciarSesion) {
+    btnIniciarSesion.addEventListener('click', () => {
+      if (btnIniciarSesion.classList.contains('logged-in')) {
+        // Cerrar sesión
+        if (typeof TrustPayStorage !== 'undefined') {
+          TrustPayStorage.remove('user');
+        }
+        chequearSesion();
+        if (typeof TrustPayToast !== 'undefined') {
+          TrustPayToast.show('Has cerrado sesión exitosamente.', 'success');
+        }
+      } else {
+        // Abrir modal de inicio de sesión
+        if (loginModal) loginModal.classList.add('show');
       }
-      chequearSesion();
-      alert('Has cerrado sesión exitosamente.');
-    } else {
-      // Abrir modal de inicio de sesión
-      loginModal.classList.add('show');
-    }
-  });
+    });
+  }
 
   // 3. Cerrar modal al hacer clic en la "X"
-  btnCloseLogin.addEventListener('click', () => {
-    loginModal.classList.remove('show');
-  });
-
-  // Cerrar modal al hacer clic fuera del contenido
-  loginModal.addEventListener('click', (e) => {
-    if (e.target === loginModal) {
+  if (btnCloseLogin && loginModal) {
+    btnCloseLogin.addEventListener('click', () => {
       loginModal.classList.remove('show');
-    }
-  });
+    });
+
+    // Cerrar modal al hacer clic fuera del contenido
+    loginModal.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.classList.remove('show');
+      }
+    });
+  }
 
   // 4. Enviar formulario (Simular autenticación)
-  formLogin.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = inputEmail.value.trim();
-    
-    if (typeof TrustPayStorage !== 'undefined') {
-      TrustPayStorage.set('user', {
-        email: email,
-        loggedIn: true,
-        timestamp: Date.now()
-      });
-    }
+  if (formLogin) {
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = inputEmail.value.trim();
+      
+      if (typeof TrustPayStorage !== 'undefined') {
+        TrustPayStorage.set('user', {
+          email: email,
+          loggedIn: true,
+          timestamp: Date.now()
+        });
+      }
 
-    loginModal.classList.remove('show');
-    chequearSesion();
-    alert(`¡Bienvenido a TrustPay, ${email.split('@')[0]}!`);
-  });
+      if (loginModal) loginModal.classList.remove('show');
+      chequearSesion();
+      
+      if (typeof TrustPayToast !== 'undefined') {
+        TrustPayToast.show(`¡Bienvenido a TrustPay, ${email.split('@')[0]}!`, 'success');
+      }
 
-  // 5. Botón Realizar Pedido
-  btnRealizarPedido.addEventListener('click', () => {
-    window.location.href = 'pages/seleccion.html';
-  });
+      // Redirigir al catálogo después de iniciar sesión correctamente
+      setTimeout(() => {
+        window.location.href = 'pages/seleccion.html';
+      }, 500); // Pequeño retraso para que se vea el Toast
+    });
+  }
 
-  // Inicializar estado del botón
+  // 5. Botón Realizar Pedido (ir directamente al catálogo)
+  if (btnRealizarPedido) {
+    btnRealizarPedido.addEventListener('click', () => {
+      window.location.href = 'pages/seleccion.html';
+    });
+  }
+
+  // Inicializar estado
   chequearSesion();
 });

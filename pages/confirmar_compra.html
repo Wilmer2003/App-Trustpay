@@ -12,6 +12,7 @@
 <!-- CSS: variables y base compartida primero, luego el de esta pantalla -->
 <link rel="stylesheet" href="../css/variables.css">
 <link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/toast.css">
 <link rel="stylesheet" href="../css/confirmar_compra.css">
 </head>
 <body>
@@ -44,11 +45,11 @@
 
         <div class="precio-fila comision">
           <span>Comisión TrustPay</span>
-          <span id="txt-comision">S/. 0.50</span>
+          <span id="txt-comision">S/. 0.00</span>
         </div>
         <div class="precio-fila total">
           <span>Precio total</span>
-          <span id="txt-total" class="bold">S/. 35.50</span>
+          <span id="txt-total" class="bold">S/. 0.00</span>
         </div>
       </div>
 
@@ -108,12 +109,19 @@
       </button>
     </nav>
 
+    <!-- Overlay de carga bancaria -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="spinner"></div>
+      <p id="loading-text">Conectando de manera segura...</p>
+    </div>
+
   </section>
 
 </div>
 
 <!-- JS -->
 <script src="../js/storage.js"></script>
+<script src="../js/toast.js"></script>
 <script src="../js/router.js"></script>
 <script src="../js/confirmar_compra.js"></script>
 </body>

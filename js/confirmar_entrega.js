@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Cargar datos en la UI
-  document.getElementById('txt-negocio-nombre').textContent = order.negocioNombre;
+  document.getElementById('txt-negocio-nombre').innerHTML = `
+    ${order.negocioNombre}
+    <span class="sello-verificado" title="Negocio Verificado">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span>
+  `;
   document.getElementById('txt-pedido-id').textContent = `#${order.id}`;
   document.getElementById('txt-monto-liberar').textContent = `S/. ${order.montoNegocio.toFixed(2)}`;
 
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Confirmar entrega y liberar fondos al comercio
   btnConfirmar.addEventListener('click', () => {
     if (calificacionSeleccionada === 0) {
-      alert('Por favor, califica el servicio antes de confirmar la entrega.');
+      TrustPayToast.show('Por favor, califica el servicio antes de confirmar la entrega.', 'error');
       return;
     }
 
@@ -94,17 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Limpiar pedido activo actual para poder hacer uno nuevo
       TrustPayStorage.remove('active_order');
       TrustPayStorage.remove('selected_business');
+      TrustPayStorage.remove('selected_product');
     }
 
     // Mostrar modal / mensaje de éxito visual antes de redirigir
-    alert(`¡Custodia Liberada! \nSe han transferido S/. ${order.montoNegocio.toFixed(2)} a ${order.negocioNombre}. \n¡Gracias por comprar con seguridad mediante TrustPay!`);
+    TrustPayToast.show(`¡Custodia Liberada!<br>Se han transferido S/. ${order.montoNegocio.toFixed(2)} a ${order.negocioNombre}.`, 'success', 3000);
     
-    // Redirigir a inicio
-    window.location.href = '../index.html';
+    // Redirigir al historial de pedidos con un pequeño retraso
+    setTimeout(() => {
+      window.location.href = 'pedidos.html';
+    }, 2000);
   });
 
   // 4. Reportar un problema (Inicia disputa)
   btnReportar.addEventListener('click', () => {
-    alert('Soporte de TrustPay:\n\nTu disputa ha sido registrada. Retendremos los fondos en custodia y un asesor de Trujillo se comunicará contigo al celular registrado en menos de 2 horas para mediar la solución con el comercio.');
+    TrustPayToast.show('Tu disputa ha sido registrada. Retendremos los fondos en custodia y un asesor se comunicará contigo pronto.', 'info', 5000);
   });
 });
